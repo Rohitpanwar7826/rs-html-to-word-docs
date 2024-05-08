@@ -1,0 +1,17 @@
+{
+  "name": "html-to-word-convertor",
+  "version": "1.0.0",
+  "description": "Html to word document",
+  "main": "index.js",
+  "repository": "git@github.com:Rohitpanwar7826/rs-html-to-word-docs.git",
+  "author": "Rohit Singh <rohitsinghmit@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "add": "^2.0.6",
+    "buffer": "^6.0.3",
+    "fs": "^0.0.1-security",
+    "juice": "^10.0.0",
+    "yarn": "^1.22.22"
+  }
+}
