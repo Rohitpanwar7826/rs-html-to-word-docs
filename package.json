@@ -10,7 +10,6 @@
   "dependencies": {
     "add": "^2.0.6",
     "buffer": "^6.0.3",
-    "fs": "^0.0.1-security",
     "juice": "^10.0.0",
     "yarn": "^1.22.22"
   }
