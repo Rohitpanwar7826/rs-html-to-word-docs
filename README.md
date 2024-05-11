@@ -1,75 +1,21 @@
-html-to-word npm Package
-The html-to-word npm package allows you to convert HTML content into Word documents. This package provides a simple interface to convert HTML pages to Word documents, which can be useful for generating reports or exporting content from web applications.
+# HTML to Word Document Converter
 
-Installation
-You can install the package via npm:
+## Introduction
+The HTML to Word Document Converter is a tool designed to convert HTML content into Microsoft Word (.docx) format. This documentation provides instructions on how to use the converter in various environments such as JavaScript, Node.js, or React.js.
 
-bash
-Copy code
-npm install html-to-word
-Usage
-convertHtmlPageToWord
-The convertHtmlPageToWord function converts an HTML page to a Word document and returns a Blob object containing the document data.
+## Features
+- Converts HTML content to Microsoft Word (.docx) format.
+- Supports basic HTML elements such as text, paragraphs, headings, lists, tables, and images.
+- Easy to integrate into different environments.
 
-Node.js Environment
-javascript
-Copy code
-const { convertHtmlPageToWord } = require('html-to-word');
+## Installation
 
-async function exampleUsage() {
-  try {
-    const htmlContent = '<html><body><h1>Hello, World!</h1></body></html>';
-    const blob = await convertHtmlPageToWord(htmlContent);
-    
-    // Use the Blob object as needed
-    // For example, you can save it to a file
-    const fs = require('fs');
-    fs.writeFileSync('output.docx', blob);
-    
-    console.log('Word document saved successfully.');
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
+### JavaScript
+```bash
+	npm install html-to-docx
 
-exampleUsage();
-React.js Environment
-javascript
-Copy code
-import React, { useEffect } from 'react';
-import { convertHtmlPageToWord } from 'html-to-word';
+### Node.js
+'''base
+	npm install html-to-docx
 
-function MyComponent() {
-  useEffect(() => {
-    async function convertAndDownload() {
-      try {
-        const htmlContent = '<html><body><h1>Hello, World!</h1></body></html>';
-        const blob = await convertHtmlPageToWord(htmlContent);
-        
-        // Create a URL for the Blob object
-        const url = window.URL.createObjectURL(blob);
-        
-        // Trigger download
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'output.docx';
-        document.body.appendChild(link);
-        link.click();
-        
-        // Clean up
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-
-    convertAndDownload();
-  }, []);
-
-  return <div>Converting HTML to Word document...</div>;
-}
-
-export default MyComponent;
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
