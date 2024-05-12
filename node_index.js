@@ -1,6 +1,6 @@
 import juice from 'juice';
 import { Buffer } from 'buffer';
-import { fetchCssContent } from './comman';
+import { fetchCssContent } from './comman.js';
 import {JSDOM} from 'jsdom';
 
 const htmlContentParser= (strHtml) => {

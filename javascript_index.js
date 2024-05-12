@@ -1,5 +1,5 @@
 import juice from 'juice';
-import { fetchCssContent } from './comman';
+import { fetchCssContent } from './comman.js';
 
 const htmlContentParser= (strHtml) => {
   const domParser = new DOMParser();
