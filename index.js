@@ -1,8 +1,10 @@
 import juice from 'juice';
 import { Buffer } from 'buffer';
+import { JSDOM } from 'jsdom';
 
 const htmlContentParser= (strHtml) => {
-  const domParser = new DOMParser();
+  const { window } = new JSDOM(strHtml)
+  const domParser = new window.DOMParser();
   const htmlContent = domParser.parseFromString(strHtml, "text/html");
   const head = htmlContent.head;
   const linkElements =  Array.from(head.querySelectorAll('link[rel="stylesheet"]'));
