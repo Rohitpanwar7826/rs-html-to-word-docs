@@ -2,7 +2,7 @@
   "name": "html-to-word-convertor",
   "version": "3.0.2",
   "description": "Html to word document",
-  "main": "javascript_index.js",
+  "main": "main.js",
   "repository": "git@github.com:Rohitpanwar7826/rs-html-to-word-docs.git",
   "author": "Rohit Singh <rohitsinghmit@gmail.com>",
   "license": "MIT",
