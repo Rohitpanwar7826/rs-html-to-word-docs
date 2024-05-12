@@ -1,10 +1,19 @@
 import juice from 'juice';
 import { Buffer } from 'buffer';
-import { JSDOM } from 'jsdom';
 
-const htmlContentParser= (strHtml) => {
-  const { window } = new JSDOM(strHtml)
-  const domParser = new window.DOMParser();
+const htmlContentParser= (strHtml, env) => {
+  let domParser = null;
+  if(env === 'nodejs') {
+    import('jsdom').then(({ JSDOM }) => {
+      const { window } = new JSDOM(strHtml);
+      domParser = new window.DOMParser();
+    }).catch(err => {
+        console.error('Error loading jsdom:', err);
+    });
+  }else {
+    domParser = new window.DOMParser();
+  }
+
   const htmlContent = domParser.parseFromString(strHtml, "text/html");
   const head = htmlContent.head;
   const linkElements =  Array.from(head.querySelectorAll('link[rel="stylesheet"]'));
@@ -76,7 +85,7 @@ async function fetchCssContent(cssUrls) {
 }
 
 export const convertHtmlPageToWord = async (htmlContent, env="Javascript") => {
-  const htmlObject = htmlContentParser(htmlContent);
+  const htmlObject = htmlContentParser(htmlContent, env);
   let styleSheets =  await fetchCssContent(htmlObject.cssUrls);
   const htmlWithInlineContent = juice.inlineContent(htmlObject.html, styleSheets);
   const html =`
