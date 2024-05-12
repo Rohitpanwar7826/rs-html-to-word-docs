@@ -7,6 +7,10 @@
   "author": "Rohit Singh <rohitsinghmit@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "exports": {
+    "./convertHtmlPageToWordJavascript": "./javascript_index.js",
+    "./convertHtmlPageToWordNode": "./node_index.js"
+  },
   "dependencies": {
     "add": "^2.0.6",
     "buffer": "^6.0.3",
