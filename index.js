@@ -92,7 +92,6 @@ export const convertHtmlPageToWord = async (htmlContent, env="Javascript") => {
       <body>
         <div>
           ${htmlWithInlineContent}
-          <hr>
         </div>
       </body>
     </html>
