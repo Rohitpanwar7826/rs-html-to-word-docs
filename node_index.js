@@ -86,5 +86,5 @@ export const convertHtmlPageToWordNode = async (htmlContent, fileName) => {
     type: 'application/msword'
   });
   const nodeBUffer = Buffer.from(await blob.arrayBuffer());
-  await fs.writeFile(fileName, blob)
+  await fs.writeFile(fileName, nodeBUffer)
 }
