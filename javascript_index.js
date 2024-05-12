@@ -1,6 +1,6 @@
-import juice from 'juice';
+import juice from 'https://cdn.jsdelivr.net/npm/juice@10.0.0/+esm'
 import { fetchCssContent } from './comman.js';
-import FileSaver from 'file-saver';
+import fileSaver from 'https://cdn.jsdelivr.net/npm/file-saver@2.0.5/+esm'
 
 const htmlContentParser= (strHtml) => {
   const domParser = new DOMParser();
@@ -81,5 +81,5 @@ export const convertHtmlPageToWordJavascript = async (htmlContent, fileName) => 
   const blob = new Blob(['\ufeff', html], {
     type: 'application/msword'
   });
-  FileSaver.saveAs(blob, fileName)
+  fileSaver.saveAs(blob, fileName)
 }
