@@ -4,12 +4,12 @@ import { Buffer } from 'buffer';
 const htmlContentParser= (strHtml, env) => {
   let domParser = null;
   if(env === 'nodejs') {
-    import('jsdom').then(({ JSDOM }) => {
-      const { window } = new JSDOM(strHtml);
-      domParser = new window.DOMParser();
-    }).catch(err => {
-        console.error('Error loading jsdom:', err);
-    });
+    // import('jsdom').then(({ JSDOM }) => {
+    //   const { window } = new JSDOM(strHtml);
+    //   domParser = new window.DOMParser();
+    // }).catch(err => {
+    //     console.error('Error loading jsdom:', err);
+    // });
   }else {
     domParser = new window.DOMParser();
   }
