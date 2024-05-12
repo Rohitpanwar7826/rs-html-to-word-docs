@@ -1,6 +1,6 @@
 {
   "name": "html-to-word-convertor",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Html to word document",
   "main": "javascript_index.js",
   "repository": "git@github.com:Rohitpanwar7826/rs-html-to-word-docs.git",
