@@ -10,6 +10,8 @@
   "dependencies": {
     "add": "^2.0.6",
     "buffer": "^6.0.3",
+    "file-saver": "^2.0.5",
+    "fs": "^0.0.1-security",
     "jsdom": "^24.0.0",
     "juice": "^10.0.0",
     "yarn": "^1.22.22"

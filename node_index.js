@@ -2,6 +2,7 @@ import juice from 'juice';
 import { Buffer } from 'buffer';
 import { fetchCssContent } from './comman.js';
 import {JSDOM} from 'jsdom';
+import fs from 'fs/promises';
 
 const htmlContentParser= (strHtml) => {
   const { window } = new JSDOM(strHtml);
@@ -58,7 +59,7 @@ const htmlContentParser= (strHtml) => {
 }
 
 
-export const convertHtmlPageToWordNode = async (htmlContent) => {
+export const convertHtmlPageToWordNode = async (htmlContent, fileName) => {
   const htmlObject = htmlContentParser(htmlContent);
   let styleSheets =  await fetchCssContent(htmlObject.cssUrls);
   const htmlWithInlineContent = juice.inlineContent(htmlObject.html, styleSheets);
@@ -84,5 +85,6 @@ export const convertHtmlPageToWordNode = async (htmlContent) => {
   const blob = new Blob(['\ufeff', html], {
     type: 'application/msword'
   });
-  return Buffer.from(await blob.arrayBuffer());
+  const nodeBUffer = Buffer.from(await blob.arrayBuffer());
+  await fs.writeFile(fileName, blob)
 }

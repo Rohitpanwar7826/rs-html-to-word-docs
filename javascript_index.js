@@ -1,5 +1,6 @@
 import juice from 'juice';
 import { fetchCssContent } from './comman.js';
+import FileSaver from 'file-saver';
 
 const htmlContentParser= (strHtml) => {
   const domParser = new DOMParser();
@@ -54,7 +55,7 @@ const htmlContentParser= (strHtml) => {
 }
 
 
-export const convertHtmlPageToWordJavascript = async (htmlContent) => {
+export const convertHtmlPageToWordJavascript = async (htmlContent, fileName) => {
   const htmlObject = htmlContentParser(htmlContent);
   let styleSheets =  await fetchCssContent(htmlObject.cssUrls);
   const htmlWithInlineContent = juice.inlineContent(htmlObject.html, styleSheets);
@@ -80,5 +81,5 @@ export const convertHtmlPageToWordJavascript = async (htmlContent) => {
   const blob = new Blob(['\ufeff', html], {
     type: 'application/msword'
   });
-  return blob;
+  FileSaver.saveAs(blob, fileName)
 }
