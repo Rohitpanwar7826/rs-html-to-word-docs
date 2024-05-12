@@ -1,5 +1,6 @@
 import juice from 'juice';
 import { Buffer } from 'buffer';
+import { Blob } from 'buffer';
 import { fetchCssContent } from './comman.js';
 import {JSDOM} from 'jsdom';
 import fs from 'fs/promises';
