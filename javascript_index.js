@@ -1,19 +1,8 @@
 import juice from 'juice';
-import { Buffer } from 'buffer';
+import { fetchCssContent } from './comman';
 
-const htmlContentParser= (strHtml, env) => {
-  let domParser = null;
-  if(env === 'nodejs') {
-    // import('jsdom').then(({ JSDOM }) => {
-    //   const { window } = new JSDOM(strHtml);
-    //   domParser = new window.DOMParser();
-    // }).catch(err => {
-    //     console.error('Error loading jsdom:', err);
-    // });
-  }else {
-    domParser = new window.DOMParser();
-  }
-
+const htmlContentParser= (strHtml) => {
+  const domParser = new DOMParser();
   const htmlContent = domParser.parseFromString(strHtml, "text/html");
   const head = htmlContent.head;
   const linkElements =  Array.from(head.querySelectorAll('link[rel="stylesheet"]'));
@@ -64,28 +53,9 @@ const htmlContentParser= (strHtml, env) => {
   return {html, cssUrls};
 }
 
-async function fetchCssContent(cssUrls) {
-  let cssContent = "";
-  for (let index = 0; index < cssUrls.length; index++) {
-    const urlObj = new URL(cssUrls[index]);
 
-    const {username, password, origin, pathname} = urlObj;
-    const response = await fetch(origin.concat(pathname), {
-    method: 'GET',
-    headers: {
-      'Authorization': 'Basic ' + btoa(username + ':' + password),
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-    })
-    const css = await response.text();
-    cssContent += css;
-  }
-  return cssContent;
-}
-
-export const convertHtmlPageToWord = async (htmlContent, env="Javascript") => {
-  const htmlObject = htmlContentParser(htmlContent, env);
+export const convertHtmlPageToWordJavascript = async (htmlContent) => {
+  const htmlObject = htmlContentParser(htmlContent);
   let styleSheets =  await fetchCssContent(htmlObject.cssUrls);
   const htmlWithInlineContent = juice.inlineContent(htmlObject.html, styleSheets);
   const html =`
@@ -110,5 +80,5 @@ export const convertHtmlPageToWord = async (htmlContent, env="Javascript") => {
   const blob = new Blob(['\ufeff', html], {
     type: 'application/msword'
   });
-  return env === "nodejs" ? Buffer.from(await blob.arrayBuffer()) : blob;
+  return blob;
 }
